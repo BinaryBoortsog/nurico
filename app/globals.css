@@ -1,26 +1,111 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Editorial palette (warm/off-white page background + charcoal text) */
+  --background: #f7f3e8;
+  --foreground: #1A1A1A;
+
+  /* Primary (Editorial Red) */
+  --primary: #DA2935;
+  --primary-light: #FDECED;
+  --primary-dark: #B01F2A;
+  --primary-mid: #E85C66;
+  --primary-soft: #F5A0A5;
+
+  /* Secondary / neutrals */
+  --secondary: #1A1A1A;
+  --muted: #757575;
+  --muted-foreground: #757575;
+  --border: #E8E6E1;
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+  --input: #FFFFFF;
+  --ring: #DA2935;
+
+  /* Dark section tokens */
+  --dark-section: #1A1A1A;
+  --dark-section-text: #FFFFFF;
+  --dark-section-muted: rgba(255,255,255,0.45);
+  --dark-section-border: rgba(255,255,255,0.08);
+
+  /* Aliases for existing variable names in the codebase (backwards compatibility) */
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-primary-mid: var(--primary-mid);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-dark: var(--primary-dark);
+
+  --color-navy: var(--secondary);
+  --color-navy-deep: #111111;
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-border: var(--border);
+
+  /* Fonts */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-calistoga), Georgia, serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+
+  /* Shadows (subtle, tuned to editorial palette) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.06);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.08);
+
+  /* Custom Spacing */
+  --spacing-13: 3.25rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+@layer utilities {
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  /* Hero gradient: lighter editorial tint for softer hero background */
+  .bg-hero-gradient {
+    background: linear-gradient(180deg, var(--primary-light), var(--primary-mid));
+  }
+
+  /* Frosted Glass - neutralized to work with editorial palette */
+  .glass-green {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(232,230,225,0.6);
+  }
+
+  /* Muted Gradient Text */
+  .gradient-text {
+    background: linear-gradient(to right, var(--primary-dark), var(--primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Soft Underline (Mint Tint) */
+  .gradient-underline {
+    position: absolute;
+    bottom: -0.1rem;
+    left: 0;
+    height: 0.4rem;
+    width: 100%;
+    border-radius: 1rem;
+    background: rgba(218,41,53,0.12);
+    z-index: -1;
+  }
+
+  /* Very subtle dot pattern */
+  .bg-dot-pattern {
+    background-image: radial-gradient(circle, rgba(218,41,53,0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
 }
