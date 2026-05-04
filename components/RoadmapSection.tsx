@@ -68,8 +68,8 @@ export const RoadmapSection = () => {
   const roadsRef = useRef<Road[]>([]);
   const particlesRef = useRef<Particle[]>([]);
   const frameRef = useRef<number>(0);
-  const generateRoadsRef = useRef<(theme: typeof PHASE_THEMES[0]) => void>();
-  const spawnParticlesRef = useRef<(theme: typeof PHASE_THEMES[0]) => void>();
+  const generateRoadsRef = useRef<(theme: typeof PHASE_THEMES[0]) => void>(() => {});
+  const spawnParticlesRef = useRef<(theme: typeof PHASE_THEMES[0]) => void>(() => {});
 
   const { scrollYProgress } = useScroll({
     target: targetRef,
